@@ -512,6 +512,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1275915758}
   movespeed: 10
+  money: {fileID: 6210446312656488107, guid: 21bc8c2a3cfb5854ab4fd0f7acbf1dba, type: 3}
+  box: {fileID: 1192641458597302, guid: 67d95473bd8329545b5b34388c9c517f, type: 3}
+  player: {fileID: 1275915761}
+  Onboxcollect:
+    m_PersistentCalls:
+      m_Calls: []
+  Onboxdeposit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1275915761 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1963562048322351255, guid: dfaff31a6b0c49f45af70cc5207dd38b,
@@ -528,7 +537,7 @@ PrefabInstance:
     - target: {fileID: 1185618691367201325, guid: dfaff31a6b0c49f45af70cc5207dd38b,
         type: 3}
       propertyPath: m_Name
-      value: scooter_green
+      value: player
       objectReference: {fileID: 0}
     - target: {fileID: 1963562048322351255, guid: dfaff31a6b0c49f45af70cc5207dd38b,
         type: 3}
@@ -558,17 +567,17 @@ PrefabInstance:
     - target: {fileID: 1963562048322351255, guid: dfaff31a6b0c49f45af70cc5207dd38b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1963562048322351255, guid: dfaff31a6b0c49f45af70cc5207dd38b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1963562048322351255, guid: dfaff31a6b0c49f45af70cc5207dd38b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1963562048322351255, guid: dfaff31a6b0c49f45af70cc5207dd38b,
         type: 3}

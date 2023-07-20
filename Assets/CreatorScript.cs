@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.XR;
 
 public class CreatorScript : MonoBehaviour
 {
@@ -30,14 +31,12 @@ public class CreatorScript : MonoBehaviour
             h = h + 15;
         }
         
-        Instantiate(box);
-        box.transform.position = new Vector3(0, 0.5f, 10);
-        Instantiate(box);
-        box.transform.position = new Vector3(0, 0.5f, 25);
-        Instantiate(box);
-        box.transform.position = new Vector3(0, 0.5f, 40);
-        Instantiate(box);
-        box.transform.position = new Vector3(0, 0.5f, 55);
+        Instantiate(box, new Vector3(0, 0.5f, 10), Quaternion.identity);
+        Instantiate(box, new Vector3(0, 0.5f, 25), Quaternion.identity);
+        Instantiate(box, new Vector3(0, 0.5f, 40), Quaternion.identity);
+        Instantiate(box, new Vector3(0, 0.5f, 55), Quaternion.identity);
+        
+        
         
     }
 }
