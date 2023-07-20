@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - boxtag
+  - delivertag
+  - finishtag
+  - enemytag
   layers:
   - Default
   - TransparentFX
