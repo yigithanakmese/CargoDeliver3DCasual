@@ -44,8 +44,16 @@ public class Player : MonoBehaviour
         moneycount++;
         Instantiate(money, player, false);
         money.transform.position = moneypos;
+        Debug.Log("delivertag collision");
+        /*for (var i = player.transform.childCount; i >= player.transform.childCount-1; i--)
+        {
+            Object.Destroy(player.transform.GetChild(i).gameObject);
+        }*/
+        Transform childToRemove = player.transform.Find("box2(Clone)");
+        childToRemove.parent = null;
         Onboxdeposit.Invoke(this);
 
 
     }
+    
 }

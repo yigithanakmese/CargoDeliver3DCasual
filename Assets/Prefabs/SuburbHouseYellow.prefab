@@ -142,3 +142,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8586837ca63e7254398573475d62b44e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  box: {fileID: 1192641458597302, guid: 91ed3affe4d4e5c41a04766eb704862b, type: 3}
+  house: {fileID: 4000013039318944}

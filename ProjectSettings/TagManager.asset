@@ -8,6 +8,7 @@ TagManager:
   - delivertag
   - finishtag
   - enemytag
+  - obstag
   layers:
   - Default
   - TransparentFX
