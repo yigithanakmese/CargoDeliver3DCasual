@@ -9,34 +9,59 @@ public class CreatorScript : MonoBehaviour
     public GameObject box;
     public GameObject road;
     public GameObject houseyellow;
+    public GameObject enemy;
+    public GameObject finish;
 
+    public int[] roadLen = new[] { 8, 10, 12 };
+    public int[] houseNum = new[] { 4, 30, 40 };
+    public int[] boxNum = new[] { 4, 30, 40 };
+    public int[] enemyNum = new[] { 2, 3, 4 }; 
+    public Player playerscript;
 
-
+   
 
     public void Start()
     {
+        playerscript = FindObjectOfType<Player>();
+        int levelId = playerscript.lId;
+        PlayerPrefs.SetInt("levelID", levelId);
+        int LID = PlayerPrefs.GetInt("levelID");
+        Debug.Log(levelId);
+
         int j = 10;
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < roadLen[LID]; i++)
         {
-            
-            Instantiate(road);
-            road.transform.position = new Vector3(0,0,j);
+            var newRoad = Instantiate(road);
+            newRoad.transform.position = new Vector3(0, 0, j);
             j = j + 10;
         }
         int h = 15;
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < houseNum[LID]; i++)
         {
-            Instantiate(houseyellow);
-            houseyellow.transform.position = new Vector3(-5, 0, h);
+            var newHouse = Instantiate(houseyellow);
+            newHouse.transform.position = new Vector3(-5, 0, h);
+
             h = h + 15;
         }
-        
-        Instantiate(box, new Vector3(0, 0.5f, 10), Quaternion.identity);
-        Instantiate(box, new Vector3(0, 0.5f, 25), Quaternion.identity);
-        Instantiate(box, new Vector3(0, 0.5f, 40), Quaternion.identity);
-        Instantiate(box, new Vector3(0, 0.5f, 55), Quaternion.identity);
-        
-        
-        
+
+        int l = 10;
+        for (int i = 0; i < boxNum[LID]; i++)
+        {
+            var newBox = Instantiate(box);
+            newBox.transform.position = new Vector3(0, 0.5f, l);
+            l = l + 15;
+        }
+        int e = 20;
+        for (int i = 0; i < enemyNum[LID]; i++)
+        {
+            var newBox = Instantiate(enemy);
+            newBox.transform.position = new Vector3(0, 0.5f, e);
+            e = e + 15;
+        }
+
+        var newFinish = Instantiate(finish);
+        newFinish.transform.position = new Vector3(0, 0, roadLen[levelId] * 10);
+
     }
+    
 }
