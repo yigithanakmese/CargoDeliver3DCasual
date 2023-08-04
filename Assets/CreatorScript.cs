@@ -23,11 +23,8 @@ public class CreatorScript : MonoBehaviour
     public void Start()
     {
         playerscript = FindObjectOfType<Player>();
-        int levelId = playerscript.lId;
-        PlayerPrefs.SetInt("levelID", levelId);
         int LID = PlayerPrefs.GetInt("levelID");
-        Debug.Log(levelId);
-
+        
         int j = 10;
         for (int i = 0; i < roadLen[LID]; i++)
         {
@@ -39,7 +36,20 @@ public class CreatorScript : MonoBehaviour
         for (int i = 0; i < houseNum[LID]; i++)
         {
             var newHouse = Instantiate(houseyellow);
-            newHouse.transform.position = new Vector3(-5, 0, h);
+            var r = Random.Range(0, 10);
+            if (r%2==0)
+            {
+                newHouse.transform.position = new Vector3(-5, 0, h);
+            }
+
+            else
+            {
+                newHouse.transform.position = new Vector3(5, 0, h);
+                newHouse.transform.Rotate(0,180,0);
+            }
+    
+            
+            
 
             h = h + 15;
         }
@@ -60,7 +70,7 @@ public class CreatorScript : MonoBehaviour
         }
 
         var newFinish = Instantiate(finish);
-        newFinish.transform.position = new Vector3(0, 0, roadLen[levelId] * 10);
+        newFinish.transform.position = new Vector3(0, 0, roadLen[LID] * 10);
 
     }
     

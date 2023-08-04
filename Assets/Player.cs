@@ -1,3 +1,4 @@
+using System;
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,10 +16,17 @@ public class Player : MonoBehaviour
     public Transform player;   
     public GameObject boxes;
     public GameObject box;
-    
 
+    public float timer = 3f;
+    public bool isReadyForDeposit;
+    public bool timerStarted;
+    public GameObject del;
 
-
+    private void Start()
+    {
+        isReadyForDeposit = false;
+        timerStarted = false;
+    }
 
 
     void Update()
@@ -27,6 +35,22 @@ public class Player : MonoBehaviour
         {
             rb.velocity = new Vector3(0, 0, 5);
         }
+
+
+        if (timerStarted)
+        {
+            timer -= Time.deltaTime;
+            if (timer<= 0)
+            {
+                timerStarted = false;
+                timer = 3f;
+                boxdeposit(del);
+                
+            }
+        }
+
+       
+
     }
     public int boxcount { get; private set; }
     public int moneycount { get; private set; }
@@ -46,13 +70,16 @@ public class Player : MonoBehaviour
     {               
             if (boxcount > 0)
             {
+          
+                var deliverPos = obj.GetComponent<Home>().deliverPos.transform.position;
+                
                 var newObj = Instantiate(box);
                 newObj.transform.parent = obj.transform;
                 newObj.GetComponent<BoxCollider>().enabled = false;
                 var newPos = obj.transform.position;               
                 newObj.transform.position = newPos;
-                obj.transform.DOMoveX(-3, 1f);
-                obj.GetComponent<BoxCollider>().enabled = false;
+                newObj.transform.DOMove(deliverPos, 1f);
+                //obj.GetComponent<BoxCollider>().enabled = false;
                 boxcount--;
                 moneycount++;
                 Debug.Log("delivertag collision");
@@ -78,7 +105,13 @@ public class Player : MonoBehaviour
 
         if (other.transform.tag == "delivertag")
         {
-            boxdeposit(other.gameObject);
+            Debug.Log("1");
+            del = other.gameObject;
+            other.enabled = false;
+            timerStarted = true;
+            
+
+            
         }
 
         if (other.transform.tag == "enemytag")
@@ -89,9 +122,23 @@ public class Player : MonoBehaviour
         }
         if ((other.transform.tag =="finishtag"))
         {
-            lId = lId +1;            
+            var lID = PlayerPrefs.GetInt("levelID");     
+            PlayerPrefs.SetInt("levelID",lID+1);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
     }
+
+    public void OnTriggerExit(Collider other)
+    {
+        Debug.Log("is Exit");
+        if (other.transform.tag == "delivertag")
+        {
+            timerStarted = false;
+            timer = 3f;
+
+        }
+    }
+
+    
 }
